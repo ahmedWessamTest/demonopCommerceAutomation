@@ -1,4 +1,4 @@
-#@smoke
+@smoke
   Feature: F03_currencies | User can change currencies to adapt with own money
     Scenario: As a user, I want to change Currency to Euro
     Given user in home page

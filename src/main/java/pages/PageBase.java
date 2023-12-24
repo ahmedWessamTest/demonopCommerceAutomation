@@ -38,7 +38,6 @@ public class PageBase {
         driver.findElement(elementLocator).click();
     }
     public String getColorElement (By elementLocator) {
-        scrollToElementView(elementLocator);
         waitForElementPresence(elementLocator);
        return driver.findElement(elementLocator).getCssValue("color");
     }

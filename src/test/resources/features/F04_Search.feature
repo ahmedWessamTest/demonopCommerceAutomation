@@ -1,4 +1,4 @@
-#@smoke
+@smoke
   Feature: F04_Search | user can search about any product with search bar
 
     Scenario Outline: As a user, i want search about product with product name, so that show products with search

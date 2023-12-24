@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -37,7 +38,10 @@ public class HomePage extends PageBase{
     By followUsTwitterIcon = By.xpath("//li[@class=\"twitter\"]//a");
     By followUsRssIcon = By.xpath("//li[@class=\"rss\"]//a");
     By followUsYoutubeIcon = By.xpath("//li[@class=\"youtube\"]//a");
-
+    By addToWithListButton = By.xpath("//button[@class=\"button-2 add-to-wishlist-button\"]");
+    By wishListButton = By.cssSelector(".ico-wishlist");
+    By successAddToWishListMessage = By.xpath("//div[@class=\"bar-notification success\"]");
+    By QtyWishListProduct = By.xpath("//input [@class=\"qty-input\"]");
 
 
 
@@ -105,18 +109,6 @@ public class HomePage extends PageBase{
         Assert.assertEquals(productSkuTitle, "SKU: "+sku);
     }
 
-//    public  void hoverOnRandomCategory() {
-//
-//    }
-//
-//    public void clickOnRandomSubCategory () {
-//
-//    }
-//
-//    public void assertOnSubCategoryResults () {
-//
-//    }
-
     public void choseAndAssertOnSubCategory() {
         int randomCategoryIndex = new Random().nextInt(3);
         int randomSubCategoryIndex = new Random().nextInt(3);
@@ -174,5 +166,34 @@ public class HomePage extends PageBase{
         driver.switchTo().window(tabs.get(1));
         String currentURL = driver.getCurrentUrl();
         Assert.assertEquals(currentURL, link);
+    }
+
+    public void clickOnAddToWishListButton () {
+        List<WebElement> addToWishListElements = driver.findElements(addToWithListButton);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(addToWithListButton));
+        addToWishListElements.get(2).click();
+    }
+
+    public void clickOnWishListButton () {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(wishListButton));
+        clickOnElement(wishListButton);
+    }
+
+    public void asserOnAddToWishListMessage (String content) {
+        SoftAssert softAssert = new SoftAssert();
+        waitForElementPresence(successAddToWishListMessage);
+        String messageColor = getColorElement(successAddToWishListMessage);
+        String messageContent = driver.findElement(successAddToWishListMessage).getText();
+        softAssert.assertEquals(messageColor, "rgba(255, 255, 255, 1)");
+        softAssert.assertEquals(messageContent, content);
+        softAssert.assertAll();
+    }
+
+    public void asserOnQtyBigThenOne () {
+        int qtyNumber = Integer.parseInt(driver.findElement(QtyWishListProduct).getAttribute("value"));
+        boolean qtyBigThenOne = qtyNumber > 0;
+        Assert.assertTrue(qtyBigThenOne);
     }
 }
