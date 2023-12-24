@@ -78,4 +78,5 @@ public class RegistrationPage extends PageBase{
         softAssert.assertEquals(messageColor, "rgba(76, 177, 124, 1)");
         softAssert.assertAll();
     }
+
 }

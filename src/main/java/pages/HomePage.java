@@ -1,14 +1,15 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.Random;
 
@@ -30,8 +31,8 @@ public class HomePage extends PageBase{
     By categoriesList = By.cssSelector(".top-menu.notmobile > li");
     By subCategoriesList = By.cssSelector(".sublist.first-level > li");
     By productPageTitle = By.className("page-title");
-
-    //List Variables
+    By homeSlider = By.xpath("//div[@id=\"nivo-slider\"]");
+    By homeSliderDots = By.xpath("//div[@class=\"nivo-controlNav\"]//a");
 
 
 
@@ -117,14 +118,33 @@ public class HomePage extends PageBase{
         int randomCategoryIndex = new Random().nextInt(3);
         int randomSubCategoryIndex = new Random().nextInt(3);
         Actions actions = new Actions(driver);
+
         List<WebElement> categoryElements = driver.findElements(categoriesList);
         WebElement randomCategoryElement = categoryElements.get(randomCategoryIndex);
         actions.moveToElement(randomCategoryElement).perform();
+
         List<WebElement> subCategoriseElements = randomCategoryElement.findElements(subCategoriesList);
         WebElement randomSubCategoryElement = subCategoriseElements.get(randomSubCategoryIndex);
         String randomSubCategoryContent = randomSubCategoryElement.getText();
         randomSubCategoryElement.click();
+
         String productPageTitleContent = driver.findElement(productPageTitle).getText();
         Assert.assertEquals(randomSubCategoryContent, productPageTitleContent);
     }
+    public void clickOnIphoneOnHomeSlider(){
+        clickOnElement(homeSlider);
+    }
+
+    public void clickOnSamsungHomeSlider (){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        List<WebElement> dots = wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.xpath("//div[@class='nivo-controlNav']//a")));
+        dots.get(1).click();
+    }
+
+
+    public void assertOnHomeSliderImageLink(String link) {
+        String getCurrentURL = driver.getCurrentUrl();
+        Assert.assertEquals(getCurrentURL, link);
+    }
+
 }

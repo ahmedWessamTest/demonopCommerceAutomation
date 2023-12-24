@@ -12,7 +12,7 @@
       |book  |
       |laptop|
       |nike  |
-#@smoke
+
     Scenario Outline: As a user, i want search about product with product sku, so than show products i need
       Given user in home page
       When enter about what he want search like "<search>"
