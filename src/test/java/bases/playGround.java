@@ -11,23 +11,27 @@ import pages.HomePage;
 import pages.PageBase;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class playGround extends TestBase {
     @Test
     public void test1() throws InterruptedException {
-        Thread.sleep(2000);
+        By followUsFacebookIcon = By.xpath("//li[@class=\"facebook\"]//a");
+        HomePage homePage = new HomePage(driver);
+        homePage.clickOnElement(followUsFacebookIcon);
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(7));
+        wait.until(ExpectedConditions.numberOfWindowsToBe(2));
 
-        List<WebElement> dots = driver.findElements(By.xpath("//div[@class=\"nivo-controlNav\"]//a"));
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+        System.out.println((tabs.size()));
 
+        driver.switchTo().window(tabs.get(1));
+        System.out.println("tab 1: "+driver.getCurrentUrl());
 
-//        By dotsNotActive = By.xpath("//a[@class=\"nivo-control\"]");
-        dots.get(1).click();
-//        HomePage homePage = new HomePage(driver);
-//        homePage.clickOnElement((By) dots.get(1));
-
-
-        }
+        driver.switchTo().window(tabs.get(0));
+        System.out.println("tab 0: "+ driver.getCurrentUrl());
+    }
     }
 

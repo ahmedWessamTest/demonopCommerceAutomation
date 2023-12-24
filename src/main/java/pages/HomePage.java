@@ -6,10 +6,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -33,7 +33,10 @@ public class HomePage extends PageBase{
     By productPageTitle = By.className("page-title");
     By homeSlider = By.xpath("//div[@id=\"nivo-slider\"]");
     By homeSliderDots = By.xpath("//div[@class=\"nivo-controlNav\"]//a");
-
+    By followUsFacebookIcon = By.xpath("//li[@class=\"facebook\"]//a");
+    By followUsTwitterIcon = By.xpath("//li[@class=\"twitter\"]//a");
+    By followUsRssIcon = By.xpath("//li[@class=\"rss\"]//a");
+    By followUsYoutubeIcon = By.xpath("//li[@class=\"youtube\"]//a");
 
 
 
@@ -146,5 +149,30 @@ public class HomePage extends PageBase{
         String getCurrentURL = driver.getCurrentUrl();
         Assert.assertEquals(getCurrentURL, link);
     }
+    public void clickOnFacebookIcon () {
+        clickOnElement(followUsFacebookIcon);
+    }
 
+    public void clickOnTwitterIcon () {
+        clickOnElement(followUsTwitterIcon);
+    }
+
+    public void clickOnRssIcon () {
+        clickOnElement(followUsRssIcon);
+    }
+
+    public void clickOnYoutubeIcon () {
+        clickOnElement(followUsYoutubeIcon);
+    }
+
+    public void assertOnAnotherTabLink (String link) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.numberOfWindowsToBe(2));
+
+        ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
+
+        driver.switchTo().window(tabs.get(1));
+        String currentURL = driver.getCurrentUrl();
+        Assert.assertEquals(currentURL, link);
+    }
 }
