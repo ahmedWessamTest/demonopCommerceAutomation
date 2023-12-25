@@ -21,19 +21,12 @@ public class PageBase {
                 .until(ExpectedConditions.presenceOfElementLocated(elementLocator));
     }
 
-    public void scrollToElementView (By elementLocator) {
-        WebElement element = driver.findElement(elementLocator);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
-    }
-
     public void enterText (By elementLocator, String text) {
-        scrollToElementView(elementLocator);
         waitForElementPresence(elementLocator);
         driver.findElement(elementLocator).sendKeys(text);
     }
 
     public void clickOnElement (By elementLocator) {
-        scrollToElementView(elementLocator);
         waitForElementPresence(elementLocator);
         driver.findElement(elementLocator).click();
     }
@@ -43,7 +36,6 @@ public class PageBase {
     }
 
     public boolean chickElementDisplayed(By elementLocator) {
-        scrollToElementView(elementLocator);
         waitForElementPresence(elementLocator);
         return driver.findElement(elementLocator).isDisplayed();
     }

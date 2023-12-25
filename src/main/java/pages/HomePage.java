@@ -27,7 +27,7 @@ public class HomePage extends PageBase{
     By productPrice = By.cssSelector(".price.actual-price");
     By searchBar = By.name("q");
     By productTitle = By.cssSelector(".product-title");
-    By productItem = By.className("product-item");
+    By productItem = By.xpath("//h2[@class=\"product-title\"]//a");
     By productSku = By.className("sku");
     By categoriesList = By.cssSelector(".top-menu.notmobile > li");
     By subCategoriesList = By.cssSelector(".sublist.first-level > li");
@@ -74,6 +74,8 @@ public class HomePage extends PageBase{
     }
 
     public void assertOnCurrenciesSignChange (String sign) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(productPrice));
         List<WebElement> elements = driver.findElements(productPrice);
         for (WebElement e : elements) {
            String currenciesSign= String.valueOf(e.getText().charAt(0));
