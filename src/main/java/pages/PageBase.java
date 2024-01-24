@@ -16,26 +16,26 @@ public class PageBase {
         this.driver = driver;
     }
 
-    public void waitForElementPresence(By elementLocator) {
+    protected void waitForElementPresence(By elementLocator) {
         new WebDriverWait(driver, Duration.ofSeconds(10))
                 .until(ExpectedConditions.presenceOfElementLocated(elementLocator));
     }
 
-    public void enterText (By elementLocator, String text) {
+    protected void enterText (By elementLocator, String text) {
         waitForElementPresence(elementLocator);
         driver.findElement(elementLocator).sendKeys(text);
     }
 
-    public void clickOnElement (By elementLocator) {
+    protected void clickOnElement (By elementLocator) {
         waitForElementPresence(elementLocator);
         driver.findElement(elementLocator).click();
     }
-    public String getColorElement (By elementLocator) {
+    protected String getColorElement (By elementLocator) {
         waitForElementPresence(elementLocator);
        return driver.findElement(elementLocator).getCssValue("color");
     }
 
-    public boolean chickElementDisplayed(By elementLocator) {
+    protected boolean chickElementDisplayed(By elementLocator) {
         waitForElementPresence(elementLocator);
         return driver.findElement(elementLocator).isDisplayed();
     }

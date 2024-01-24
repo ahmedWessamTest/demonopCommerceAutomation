@@ -1,11 +1,11 @@
 package steps;
 
-import bases.TestBase;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.HomePage;
+import static bases.TestBase.driver;
 
-public class D04_searchSteps extends TestBase {
+public class D04_searchSteps {
     HomePage homePageObject = new HomePage(driver);
     @When("enter about what he want search like {string}")
     public void enter_about_what_he_want_search_like(String searchingWord) {

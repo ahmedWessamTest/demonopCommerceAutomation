@@ -1,11 +1,12 @@
 package steps;
 
-import bases.TestBase;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.HomePage;
+import static bases.TestBase.driver;
 
-public class D05_hoverCategoriesSteps extends TestBase {
+
+public class D05_hoverCategoriesSteps {
     HomePage homePageObject = new HomePage(driver);
     @When("hover on random category")
     public void hover_on_random_category() {

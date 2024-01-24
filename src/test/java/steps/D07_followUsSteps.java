@@ -1,11 +1,11 @@
 package steps;
 
-import bases.TestBase;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.HomePage;
+import static bases.TestBase.driver;
 
-public class D07_followUsSteps extends TestBase {
+public class D07_followUsSteps {
     HomePage homePageObject = new HomePage(driver);
     @When("user opens facebook link")
     public void user_opens_facebook_link() {

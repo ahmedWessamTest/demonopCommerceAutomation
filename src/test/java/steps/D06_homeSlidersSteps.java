@@ -1,11 +1,12 @@
 package steps;
 
-import bases.TestBase;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.HomePage;
+import static bases.TestBase.driver;
 
-public class D06_homeSlidersSteps extends TestBase {
+
+public class D06_homeSlidersSteps {
     HomePage homePageObject = new HomePage(driver);
     @When("click on samsung Galaxy S22 slider imag")
     public void click_on_samsung_galaxy_s22_slider_imag() {

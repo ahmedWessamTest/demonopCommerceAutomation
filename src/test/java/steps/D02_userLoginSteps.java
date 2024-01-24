@@ -1,13 +1,14 @@
 package steps;
 
-import bases.TestBase;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.HomePage;
 import pages.LoginPage;
 
-public class D02_userLoginSteps extends TestBase {
+import static bases.TestBase.driver;
+
+public class D02_userLoginSteps {
     HomePage homePageObject = new HomePage(driver);
     LoginPage loginPageObject = new LoginPage(driver);
     @Given("user go to login page")
@@ -19,7 +20,6 @@ public class D02_userLoginSteps extends TestBase {
     public void user_login_with_and(String validation, String email, String password) {
         loginPageObject.enterLoginEmail(email);
         loginPageObject.enterPassword(password);
-
         System.out.println("Validation type: "+ validation);
     }
 

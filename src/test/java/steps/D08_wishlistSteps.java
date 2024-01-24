@@ -1,11 +1,12 @@
 package steps;
 
-import bases.TestBase;
+
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.HomePage;
+import static bases.TestBase.driver;
 
-public class D08_wishlistSteps extends TestBase {
+public class D08_wishlistSteps {
     HomePage homePageObject = new HomePage(driver);
     @When("user press on wishlist button")
     public void user_press_on_wishlist_button() {

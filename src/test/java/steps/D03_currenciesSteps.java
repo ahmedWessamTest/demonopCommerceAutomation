@@ -1,12 +1,13 @@
 package steps;
 
-import bases.TestBase;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.HomePage;
+import static bases.TestBase.driver;
 
-public class D03_currenciesSteps extends TestBase {
+public class D03_currenciesSteps {
+
     HomePage homePageObject = new HomePage(driver);
     @Given("user in home page")
     public void user_in_home_page() {

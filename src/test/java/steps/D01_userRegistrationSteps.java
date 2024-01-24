@@ -1,13 +1,14 @@
 package steps;
 
-import bases.TestBase;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import pages.HomePage;
 import pages.RegistrationPage;
 
-public class D01_userRegistrationSteps extends TestBase {
+import static bases.TestBase.driver;
+
+public class D01_userRegistrationSteps {
     RegistrationPage registrationPageObject = new RegistrationPage(driver);
     HomePage homePageObject = new HomePage(driver);
     @Given("user go to register page")
