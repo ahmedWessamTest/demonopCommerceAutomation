@@ -10,12 +10,12 @@
       When user opens twitter link
       Then "https://twitter.com/nopCommerce" is opened in new tab
 
-    Scenario: as a user, i want open rrs link, then show facebook page
+    Scenario: as a user, i want open rrs link, then show rrs page
       Given user in home page
       When user opens rrs link
       Then "https://demo.nopcommerce.com/new-online-store-is-open" is opened in new tab
 
-    Scenario: as a user, i want open youtube link, then show facebook page
+    Scenario: as a user, i want open youtube link, then show youtube page
       Given user in home page
       When user opens youtube link
       Then "https://www.youtube.com/user/nopCommerce" is opened in new tab
